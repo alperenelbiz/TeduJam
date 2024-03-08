@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth;
-    public int currentHealth;
+    public int currentHealth=100;
     //public Image HealthBar;
-    Animator _animator;
+    //Animator _animator;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        //_animator = GetComponent<Animator>();
 
         ResetHealth();
 
@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     private void Update()
     {
         UpdateHealthBar();
-        _animator.SetInteger("Health", currentHealth);
+        //_animator.SetInteger("Health", currentHealth);
     }
 
 
@@ -39,16 +39,16 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHealthBar()
     {
         float fill = (float)currentHealth / maxHealth;
-        HealthBar.fillAmount = fill;
+        Debug.Log(currentHealth);
+
+        //HealthBar.fillAmount = fill;
     }
     public void Die()
     {
-        eventSystem.GetComponent<Spawner>().isLose = true;
-        characterPanel.SetActive(false);
-        menu.SetActive(true);
+ 
         Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        /*Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;*/
     }
     public void ResetHealth()
     {
