@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     public Transform firePoint;
     public bool isRanged;
     public bool isRunner;
-    //CharacterHealth playerHealth;
+    PlayerHealth playerHealth;
         
 
     private bool isAttacked;
