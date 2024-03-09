@@ -20,7 +20,6 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
-        ammoText.SetText(ammo.ToString());
-        healthText.SetText(health.ToString());
+
     }
 }
