@@ -229,9 +229,10 @@ GameObject:
   - component: {fileID: 713806922298710221}
   - component: {fileID: 3161384418980025293}
   - component: {fileID: 7001487402539017858}
+  - component: {fileID: 5771428477505860265}
   m_Layer: 6
   m_Name: FirstPersonCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -372,12 +373,26 @@ MonoBehaviour:
   grounded: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   counterMovement: 0.175
   maxSlopeAngle: 35
   slideForce: 400
   slideCounterMovement: 0.2
   jumpForce: 550
+--- !u!114 &5771428477505860265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492700319575785102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f621c7ddc4ba6294084fdc1676c53851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
 --- !u!1 &4604678858985618278
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +424,7 @@ Transform:
   - {fileID: 7697619432090906408}
   - {fileID: 6388659626644659149}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4830379348286930184
 GameObject:
@@ -550,7 +565,7 @@ MonoBehaviour:
   ReloadRate: 5
   maxAmmo: 8
   currentAmmo: 0
-  currentLevel: 0
+  currentLevel: 1
 --- !u!1 &5907532080683441659
 GameObject:
   m_ObjectHideFlags: 0

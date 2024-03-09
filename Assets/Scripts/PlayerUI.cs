@@ -2,24 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
-     int ammo;
-     int health;
+    public PlayerHealth playerHealth;
+    public Gun gun;
+    public TextMeshProUGUI ammoText;
 
-    [SerializeField] TextMeshProUGUI ammoText;
-    //[SerializeField] TextMeshPro healthText;
-
-
-    private void Awake()
-    {
-        ammo = GetComponent<Gun>().currentAmmo;
-      //  health = GetComponent<PlayerHealth>().currentHealth;
-    }
+    [SerializeField] Slider Slider;
+    [SerializeField] Image Image;
 
     private void Update()
     {
-
+        ammoText.text = gun.currentAmmo.ToString();
+        Slider.maxValue = playerHealth.maxHealth;
+        Slider.value = playerHealth.currentHealth;
     }
 }
