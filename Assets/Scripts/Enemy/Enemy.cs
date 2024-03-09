@@ -17,13 +17,14 @@ public class Enemy : MonoBehaviour
     public Transform firePoint;
     public bool isRanged;
     public bool isRunner;
-    //CharacterHealth playerHealth;
-        
+    PlayerHealth playerHealth;
+
 
     private bool isAttacked;
     Animator _animator;
     private void Awake()
     {
+        playerHealth = player.GetComponent<PlayerHealth>();
         //_animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -36,9 +37,9 @@ public class Enemy : MonoBehaviour
 
 
     void Update()
-    {   
+    {
         inRange = Physics.CheckSphere(transform.position, attackRange, player0);
-        if (inRange /*&& playerHealth.currentHealth > 0*/)
+        if (inRange)
         {
             Attack();
         }
@@ -49,7 +50,37 @@ public class Enemy : MonoBehaviour
     }
     void Attack()
     {
+        transform.LookAt(player);
+        agent.SetDestination(transform.position);
 
+        if (!isAttacked)
+        {
+
+            if (isRanged)
+            {
+
+                //Vector3 _rotation = new Vector3(firePoint.rotation.x, firePoint.rotation.y, firePoint.rotation.z - 90);
+                GameObject arrow = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+                //arrow.transform.rotation = Quaternion.Euler(_rotation);
+
+                Vector3 direction = player.position - transform.position;
+                direction.Normalize();
+
+
+                Rigidbody arrowRigidbody = arrow.GetComponent<Rigidbody>();
+                arrowRigidbody.velocity = direction * 20f;
+                //Debug.Log(sphereRigidbody.velocity);
+                //_animator.SetBool("Attack", true);
+            }
+            if (!isRanged)
+            {
+                //_animator.SetBool("Attack", true);
+                playerHealth.takeDamage(attackDamage);
+            }
+
+            isAttacked = true;
+            Invoke("AttackCooldown", attackCooldown);
+        }
     }
     void Chase()
     {
@@ -63,6 +94,12 @@ public class Enemy : MonoBehaviour
             agent.speed = moveSpeed;
             agent.SetDestination(player.position);
         }
+    }
+    void AttackCooldown()
+    {
+        //_animator.SetBool("Attack", false);
+        isAttacked = false;
+
     }
 }
 
