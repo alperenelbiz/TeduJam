@@ -17,12 +17,14 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
     public int pelletsPerShot = 8; // Her atýþta kaç adet mermi ateþleneceði
-    public float spreadAngle = 20f; // Mermilerin yayýlma açýsý
+    public float spreadAngle = 10f; // Mermilerin yayýlma açýsý
     public float fireRate = 1f; // Atýþ hýzý
     public float ReloadRate = 5f;
     public int maxAmmo = 8;
     public int currentAmmo;
     private bool isAttacked=false;
+
+    public ParticleSystem muzzleFlash;
 
     public int currentLevel;
     
@@ -71,15 +73,13 @@ public class Gun : MonoBehaviour
                     if (bulletSpawnPoints_level1[i] != null)
                     {
                             isAttacked = true;
-                            // spreadRotation deðiþkenini tanýmla
-                            Quaternion spreadRotation = Quaternion.Euler(0f, Random.Range(-spreadAngle, spreadAngle), 0f);
-                        
+                        // spreadRotation deðiþkenini tanýmla
+                            muzzleFlash.Play();
+                            Quaternion spreadRotation = Quaternion.Euler(Random.Range(-spreadAngle, spreadAngle), Random.Range(-spreadAngle, spreadAngle), 0f);
                             var bullet1 = Instantiate(bulletPrefab, bulletSpawnPoints_level1[i].position, bulletSpawnPoints_level1[i].rotation * spreadRotation);
                             bullet1.GetComponent<Rigidbody>().velocity = bullet1.transform.forward * bulletSpeed;
+                            StartCoroutine(FireDelay(10f/fireRate));
                             
-                            StartCoroutine(FireDelay(fireRate/10f));
-                        
-                        
 
                     }
                     
@@ -94,12 +94,13 @@ public class Gun : MonoBehaviour
                     // bulletSpawnPoints[i] deðerini kontrol et
                     if (bulletSpawnPoints_level2[i] != null)
                     {
+                        muzzleFlash.Play();
                         // spreadRotation deðiþkenini tanýmla
                         Quaternion spreadRotation = Quaternion.Euler(0f, Random.Range(-spreadAngle, spreadAngle), 0f);
 
                         var bullet2 = Instantiate(bulletPrefab, bulletSpawnPoints_level2[i].position, bulletSpawnPoints_level2[i].rotation * spreadRotation);
                         bullet2.GetComponent<Rigidbody>().velocity = bullet2.transform.forward * bulletSpeed;
-                        StartCoroutine(FireDelay(fireRate));
+                        StartCoroutine(FireDelay(10f / fireRate));
                     }
                 }
             }
@@ -110,12 +111,13 @@ public class Gun : MonoBehaviour
                     // bulletSpawnPoints[i] deðerini kontrol et
                     if (bulletSpawnPoints_level3[i] != null)
                     {
+                        muzzleFlash.Play();
                         // spreadRotation deðiþkenini tanýmla
                         Quaternion spreadRotation = Quaternion.Euler(0f, Random.Range(-spreadAngle, spreadAngle), 0f);
 
                         var bullet = Instantiate(bulletPrefab, bulletSpawnPoints_level3[i].position, bulletSpawnPoints_level3[i].rotation * spreadRotation);
                         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
-                        StartCoroutine(FireDelay(fireRate));
+                        StartCoroutine(FireDelay(10f / fireRate));
                     }
                 }
             }
@@ -131,11 +133,8 @@ public class Gun : MonoBehaviour
 
     IEnumerator FireDelay(float delayTime)
     {
-        Debug.Log("aa");
-        
         yield return new WaitForSeconds(delayTime);
         isAttacked = false;
-        Debug.Log("bb");
     }
 
     IEnumerator ReloadWithDelay(float delayTime)
