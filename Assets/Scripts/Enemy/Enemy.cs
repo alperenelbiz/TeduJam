@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         playerHealth = player.GetComponent<PlayerHealth>();
-        //_animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
     }
@@ -70,14 +70,14 @@ public class Enemy : MonoBehaviour
                 Rigidbody arrowRigidbody = arrow.GetComponent<Rigidbody>();
                 arrowRigidbody.velocity = direction * 20f;
                 //Debug.Log(sphereRigidbody.velocity);
-                //_animator.SetBool("Attack", true);
+  
             }
             if (!isRanged)
             {
-                //_animator.SetBool("Attack", true);
+                _animator.SetBool("isInRange", false);
                 playerHealth.takeDamage(attackDamage);
             }
-
+            _animator.SetTrigger("isAttacked");
             isAttacked = true;
             Invoke("AttackCooldown", attackCooldown);
         }
@@ -86,6 +86,7 @@ public class Enemy : MonoBehaviour
     {
         if (isRunner == true)
         {
+            _animator.SetBool("isInRange", true);
             Vector3 v3MeTowardsTarget = player.position - transform.position;
             agent.velocity += v3MeTowardsTarget.normalized * moveSpeed * Time.deltaTime;
         }
