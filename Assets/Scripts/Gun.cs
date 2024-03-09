@@ -22,6 +22,7 @@ public class Gun : MonoBehaviour
     public float ReloadRate = 5f;
     public int maxAmmo = 8;
     public int currentAmmo;
+    private bool isAttacked=false;
 
     public int currentLevel;
     
@@ -33,7 +34,8 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacked)
         {
             /*
             if (currentLevel == 1)
@@ -49,8 +51,10 @@ public class Gun : MonoBehaviour
                 Instantiate(Gun3, cylinderObject.transform.position, cylinderObject.transform.rotation, cylinderObject.transform);
             }
             */
-            Fire(); 
-            StartCoroutine(FireDelay(fireRate));
+            
+                Fire();
+            
+            
         }
     }
 
@@ -66,12 +70,16 @@ public class Gun : MonoBehaviour
                     // bulletSpawnPoints[i] deðerini kontrol et
                     if (bulletSpawnPoints_level1[i] != null)
                     {
-                        // spreadRotation deðiþkenini tanýmla
-                        Quaternion spreadRotation = Quaternion.Euler(0f, Random.Range(-spreadAngle, spreadAngle), 0f);
+                            isAttacked = true;
+                            // spreadRotation deðiþkenini tanýmla
+                            Quaternion spreadRotation = Quaternion.Euler(0f, Random.Range(-spreadAngle, spreadAngle), 0f);
                         
-                        var bullet1 = Instantiate(bulletPrefab, bulletSpawnPoints_level1[i].position, bulletSpawnPoints_level1[i].rotation * spreadRotation);
-                        bullet1.GetComponent<Rigidbody>().velocity = bullet1.transform.forward * bulletSpeed;
-                        StartCoroutine(FireDelay(fireRate/10f));
+                            var bullet1 = Instantiate(bulletPrefab, bulletSpawnPoints_level1[i].position, bulletSpawnPoints_level1[i].rotation * spreadRotation);
+                            bullet1.GetComponent<Rigidbody>().velocity = bullet1.transform.forward * bulletSpeed;
+                            
+                            StartCoroutine(FireDelay(fireRate/10f));
+                        
+                        
 
                     }
                     
@@ -123,7 +131,11 @@ public class Gun : MonoBehaviour
 
     IEnumerator FireDelay(float delayTime)
     {
+        Debug.Log("aa");
+        
         yield return new WaitForSeconds(delayTime);
+        isAttacked = false;
+        Debug.Log("bb");
     }
 
     IEnumerator ReloadWithDelay(float delayTime)
