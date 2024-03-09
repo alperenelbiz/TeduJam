@@ -8,14 +8,14 @@ public class PlayerUI : MonoBehaviour
      int ammo;
      int health;
 
-    [SerializeField] TextMeshPro ammoText;
-    [SerializeField] TextMeshPro healthText;
+    [SerializeField] TextMeshProUGUI ammoText;
+    //[SerializeField] TextMeshPro healthText;
 
 
     private void Awake()
     {
         ammo = GetComponent<Gun>().currentAmmo;
-        health = GetComponent<PlayerHealth>().currentHealth;
+      //  health = GetComponent<PlayerHealth>().currentHealth;
     }
 
     private void Update()
