@@ -39,13 +39,11 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHealthBar()
     {
         float fill = (float)currentHealth / maxHealth;
-        HealthBar.fillAmount = fill;
+        //HealthBar.fillAmount = fill;
     }
     public void Die()
     {
-        eventSystem.GetComponent<Spawner>().isLose = true;
-        characterPanel.SetActive(false);
-        menu.SetActive(true);
+        
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
