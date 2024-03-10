@@ -23,12 +23,14 @@ public class Enemy : MonoBehaviour
 
     private bool isAttacked;
     Animator _animator;
+
+    GameObject realPlayer;
     private void Awake()
     {
         playerHealth = player.GetComponent<PlayerHealth>();
         _animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-
+        realPlayer= GameObject.Find("FirstPersonCharacter");
     }
     private void Start()
     {

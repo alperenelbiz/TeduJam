@@ -11,13 +11,21 @@ public class CardSystem : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject crosshair;
     public bool gamePaused = false;
-    Gun gunScript = FindObjectOfType<Gun>();
-    PlayerMovement movementScript = FindObjectOfType<PlayerMovement>();
+    Gun gunScript;
+    PlayerHealth playerHealth;
+    PlayerMovement movementScript;
+    Enemy enemyScript;
+    EnemyBullet enemyBulletScript;
+    Bullet bullet;
 
     public void Start()
     {
         Gun gunScript = FindObjectOfType<Gun>();
+        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         PlayerMovement movementScript = FindObjectOfType<PlayerMovement>();
+        Enemy enemyScript = FindObjectOfType<Enemy>();
+        EnemyBullet enemyBulletScript = FindObjectOfType<EnemyBullet>();
+        Bullet bullet = FindObjectOfType<Bullet>();
     }
     public void Choices1()
     {
@@ -43,6 +51,7 @@ public class CardSystem : MonoBehaviour
     {
         if (gunScript.currentLevel == 1 || gunScript.currentLevel == 2)
         {
+
             EventChoice1.text = "+silah seviyesi ama dusmanlarin verdiði hasar +%10";
             EventChoice2.text = "+silah seviyesi ama dusman kosma hizi +%15";
         }
@@ -64,11 +73,14 @@ public class CardSystem : MonoBehaviour
     public void Menu1Button1()
     {
         //dusmanlarýn saldiri hizi +%10
+        enemyScript.moveSpeed -= (enemyScript.attackCooldown * 10) / 100;
         gunScript.currentLevel = 2;
     }
     public void Menu1Button2()
     {
         //dusmanlarýn saldiri hasari -%10
+        enemyScript.moveSpeed -= (enemyScript.attackDamage* 10) / 100;
+        enemyBulletScript.ammoDamage -= (enemyBulletScript.ammoDamage * 10) / 100;
         movementScript.moveSpeed *= 0.9f;
     }
     public void ChoiceMenuOn2()
@@ -83,12 +95,17 @@ public class CardSystem : MonoBehaviour
     public void Menu2Button1()
     {
         //player health -%5
+        playerHealth.maxHealth -= (playerHealth.maxHealth * 5) / 100;
         //+%10 damage per bullet
+        bullet.ammoDamage += (bullet.ammoDamage * 10) / 100;
+
     }
     public void Menu2Button2()
     {
         //dusman kosma hizi -%10
+        enemyScript.moveSpeed += (enemyScript.moveSpeed * 10) / 100;
         //dusman saldiri hizi +%10
+        enemyScript.attackCooldown -= (enemyScript.attackCooldown * 10) / 100;
     }
     public void ChoiceMenuOn3()
     {
@@ -103,11 +120,15 @@ public class CardSystem : MonoBehaviour
     {
         gunScript.currentLevel += 1;
         //dusman kosma hizi +%10
+        enemyScript.moveSpeed += (enemyScript.moveSpeed * 10) / 100;
     }
     public void Menu3Button2()
     {
         //dusmanlarin verdiði hasar +%10
+        enemyScript.attackDamage += (enemyScript.attackDamage * 10) / 100;
+        enemyBulletScript.ammoDamage += (enemyBulletScript.ammoDamage * 10) / 100;
         //mermi basina +%10 hasar
+        bullet.ammoDamage += (bullet.ammoDamage * 10) / 100;
     }
     public void ChoiceMenuOn4()
     {
@@ -122,11 +143,14 @@ public class CardSystem : MonoBehaviour
     {
         gunScript.currentLevel += 1;
         //oyuncu kosma hizi -%10
+        movementScript.moveSpeed-= (movementScript.moveSpeed * 10)/100;
     }
     public void Menu4Button2()
     {
         //dusmanlarýn kosma hizi -%10
+        enemyScript.moveSpeed -= (enemyScript.moveSpeed * 10) / 100;
         //mermi basina -%10 hasar
+        bullet.ammoDamage -= (bullet.ammoDamage * 10) / 100;
     }
     public void ChoiceMenuOn5()
     {
@@ -139,11 +163,35 @@ public class CardSystem : MonoBehaviour
     }
     public void Menu5Button1()
     {
-       //burasi kaldi
+        //burasi kaldi
+        if (gunScript.currentLevel == 1 || gunScript.currentLevel == 2)
+        {
+         gunScript.currentLevel++;
+         enemyScript.attackDamage += (enemyScript.attackDamage * 10) / 100;
+         enemyBulletScript.ammoDamage += (enemyBulletScript.ammoDamage * 10) / 100;
+        }
+        else
+        {
+            gunScript.currentLevel--;
+            enemyScript.attackDamage -= (enemyScript.attackDamage * 15) / 100;
+            enemyBulletScript.ammoDamage -= (enemyBulletScript.ammoDamage * 15) / 100;
+        }
+            
     }
     public void Menu5Button2()
     {
         //burasi kaldi
+        if (gunScript.currentLevel == 1 || gunScript.currentLevel == 2)
+        {
+            gunScript.currentLevel++;
+            enemyScript.moveSpeed += (enemyScript.moveSpeed * 15) / 100;
+        }
+        else
+        {
+            enemyScript.moveSpeed -= (enemyScript.moveSpeed * 10) / 100;
+            enemyScript.attackDamage += (enemyScript.attackDamage * 10) / 100;
+            enemyBulletScript.ammoDamage += (enemyBulletScript.ammoDamage * 10) / 100;
+        }
     }
     public void ChoiceMenuOff()
     {

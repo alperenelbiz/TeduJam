@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < enemyPrefabs.Length; i++)
         {
 
-            if (enemyPrefabs[i].name == "Yarasa")
+            if (enemyPrefabs[i].name == "Eye")
             {
                 keep = i;
                 Debug.Log(i);
