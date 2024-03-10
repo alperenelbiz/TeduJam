@@ -661,11 +661,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   bulletPrefab: {fileID: 8335428159064267055, guid: 012cfc1d1f1a8da4f868fbe5f1d1a801, type: 3}
+  gun1: {fileID: 0}
+  gun2: {fileID: 0}
+  gun3: {fileID: 0}
   bulletSpeed: 10
   pelletsPerShot: 8
   spreadAngle: 20
-  fireRate: 20
   ReloadRate: 5
   maxAmmo: 8
   currentAmmo: 0
+  gun1muzzleFlash1: {fileID: 0}
+  gun2muzzleFlash1: {fileID: 0}
+  gun2muzzleFlash2: {fileID: 0}
+  gun3muzzleFlash1: {fileID: 0}
+  gun3muzzleFlash2: {fileID: 0}
+  gun3muzzleFlash3: {fileID: 0}
   currentLevel: 1
