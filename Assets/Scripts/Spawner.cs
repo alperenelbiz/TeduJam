@@ -13,8 +13,8 @@ public class Spawner : MonoBehaviour
     public int spawnCooldown;
     private float nextSpawnTime;
     private int keep;
-    private int spawned;
-    public GameObject player;
+    public int spawned;
+    Event event0;
     
 
     void Start()
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
             if (enemyPrefabs[i].name == "Eye")
             {
                 keep = i;
-                Debug.Log(i);
+                
                 break;
             }
         }
@@ -48,7 +48,11 @@ public class Spawner : MonoBehaviour
             GameObject enemy = Instantiate(enemyPrefabs[randomIndex], transform.position, Quaternion.identity);
             nextSpawnTime = Time.time + spawnCooldown;
             spawned++;
+            
+            
+            
         }
+        
     }
     void CheckCollision()
     {
@@ -68,9 +72,11 @@ public class Spawner : MonoBehaviour
                 {
                     GameObject enemy = Instantiate(enemyPrefabs[keep], transform.position, Quaternion.identity);
                     nextSpawnTime = Time.time + spawnCooldown;
+                    
                     spawned++;
                 }
             }
         }
     }
+
 }
