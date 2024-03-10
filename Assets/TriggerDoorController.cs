@@ -7,11 +7,16 @@ public class TriggerDoorController : MonoBehaviour
     [SerializeField] private Animator myDoor = null;
     [SerializeField] private bool openTrigger = false;
     [SerializeField] private bool closeTrigger = false;
-    private Spawner spawner;
+    public List<Spawner> spawners = new List<Spawner>();
+    
+    Event event0;
 
-    private void Start()
+    private void Update()
     {
-        spawner = FindObjectOfType<Spawner>();
+        while(event0.enemies.Length>0) {
+            gameObject.SetActive(false);
+        }
+        gameObject.SetActive(true);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -20,13 +25,17 @@ public class TriggerDoorController : MonoBehaviour
             Debug.Log("entered");
             if (openTrigger)
             {
-
+                foreach (Spawner spawner in spawners)
+                    spawner.isNewLvl = false;
+                
                 myDoor.Play("doorOpen", 0, 0.0f);
                 gameObject.SetActive(false);
             }
             else if (closeTrigger)
             {
-                spawner.isNewLvl = true;
+                foreach (Spawner spawner in spawners)
+                    spawner.isNewLvl = true;
+               
                 myDoor.Play("doorClose", 0, 0.0f);
                 gameObject.SetActive(false);
             }

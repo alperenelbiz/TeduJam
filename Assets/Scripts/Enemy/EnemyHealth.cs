@@ -9,26 +9,33 @@ public class EnemyHealth : MonoBehaviour
    /* public Image HealthBar;
     public GameObject canvas;*/
     public static float healthValue = 1f;
+    public int dedcount;
+   
+    Spawner spawner;
+    Event event0;
     void Start()
     {
         maxHealth = maxHealth * healthValue;
         currentHealth = maxHealth;
         UpdateHealthBar();
+        
     }
 
     private void Update()
     {
         //canvas.transform.rotation = Quaternion.LookRotation(canvas.transform.position - Camera.main.transform.position);
-
+        Debug.Log(dedcount);
     }
     public void takeDamage(float amount)
     {
         currentHealth -= amount;
+       
         if (currentHealth <= 0)
         {
+            
             currentHealth = 0;
             Die();
-
+            
         }
 
         UpdateHealthBar();
@@ -42,8 +49,9 @@ public class EnemyHealth : MonoBehaviour
     }
 
     public void Die()
-    {
-        Destroy(this.gameObject);
+    {   
+        Destroy(gameObject);
+        dedcount++;
     }
     public void HealthIncrease(float x)
     {
