@@ -41,13 +41,13 @@ public class CardSystem : MonoBehaviour
 
     public void Start()
     {
-        gunScript = GameObject.Find("Player / Camera / Main Camera").GetComponent<Gun>();
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        movementScript = GameObject.Find("Player / FirstPersonCharacter").GetComponent<PlayerMovement>();
+        gunScript = GameObject.Find("Player/Camera/Main Camera/Camera").GetComponent<Gun>();
+        playerHealth = GameObject.Find("Player/FirstPersonCharacter").GetComponent<PlayerHealth>();
+        movementScript = GameObject.Find("Player/FirstPersonCharacter").GetComponent<PlayerMovement>();
         enemyScript = GameObject.Find("Eye").GetComponent<Enemy>();
         enemyBulletScript = GameObject.Find("Fireball").GetComponent<EnemyBullet>();
         bullet = GameObject.Find("Bullet").GetComponent<Bullet>();
-        orbTrig = GameObject.Find("Orb1").GetComponent<OrbTrigger>();
+        orbTrig = GameObject.Find("Orb1/OrbTrigger").GetComponent<OrbTrigger>();
     }
     public void Choices1()
     {

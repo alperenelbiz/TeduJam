@@ -33,20 +33,6 @@ public class HareketKontrolu : MonoBehaviour
             if (Vector3.Distance(transform.position, hedefNesne.position) < 0.644f)
             {
                 Debug.Log("Hedefe ulaþýldý!");
-                Delay(delayTime);
-                if (hedefNesne2 != null)
-                {
-                    // Kameranýn dönüþ açýsýný al
-                    float kameraDonusAcisi2 = Camera.main.transform.eulerAngles.y;
-
-                    // Hedefe doðru bir vektör oluþtur
-                    Vector3 hedefYon2 = Quaternion.Euler(0, kameraDonusAcisi2, 0) * (hedefNesne2.position - transform.position);
-
-                    // Hedefe doðru normalleþtirilmiþ bir vektör oluþtur
-                    Vector3 normalizedHedefYon2 = hedefYon.normalized;
-
-                    // Hedefe doðru hareket et
-                    transform.position = Vector3.MoveTowards(transform.position, hedefNesne2.position, hareketHizi * Time.deltaTime);
                 }
             }
             else
@@ -56,8 +42,3 @@ public class HareketKontrolu : MonoBehaviour
         }
 
     }
-    IEnumerator Delay(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-    }
-}
