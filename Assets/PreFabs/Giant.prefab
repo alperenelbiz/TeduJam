@@ -1003,7 +1003,7 @@ GameObject:
   - component: {fileID: 2162665271549400767}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1107,8 +1107,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7390139212902480409}
   m_AABB:
-    m_Center: {x: 0.0133880675, y: -0.14516264, z: 0.074763745}
-    m_Extent: {x: 0.966709, y: 1.0833547, z: 0.61415124}
+    m_Center: {x: 0.03154686, y: -0.23171127, z: 0.068513155}
+    m_Extent: {x: 0.31668952, y: 0.996806, z: 0.36816645}
   m_DirtyAABB: 0
 --- !u!1 &6735165039719625415
 GameObject:
@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 936283041080959051}
   m_Layer: 0
   m_Name: Giant
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1405,7 +1405,7 @@ Transform:
   - {fileID: 5274966812264528939}
   - {fileID: 7390139212902480409}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6342566116155007443
 Animator:
@@ -1540,8 +1540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8baf03b567f74e45800193eb7141353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
-  currentHealth: 150
+  maxHealth: 50
+  currentHealth: 50
 --- !u!1 &9111107340245899722
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,18 +27,19 @@ public class Enemy : MonoBehaviour
     GameObject realPlayer;
     private void Awake()
     {
+        player = GameObject.Find("Player/FirstPersonCharacter").GetComponent<Transform>();
         playerHealth = player.GetComponent<PlayerHealth>();
         _animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        realPlayer= GameObject.Find("FirstPersonCharacter");
-        
+        realPlayer = GameObject.Find("FirstPersonCharacter");
+
     }
-   
+
 
 
     void Update()
     {
-        
+
         inRange = Physics.CheckSphere(transform.position, attackRange, player0);
         if (inRange)
         {
@@ -63,7 +64,7 @@ public class Enemy : MonoBehaviour
 
             if (isRanged)
             {
-                
+
 
                 //Vector3 _rotation = new Vector3(firePoint.rotation.x, firePoint.rotation.y, firePoint.rotation.z - 90);
                 GameObject arrow = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -76,29 +77,29 @@ public class Enemy : MonoBehaviour
                 Rigidbody arrowRigidbody = arrow.GetComponent<Rigidbody>();
                 arrowRigidbody.velocity = direction * 40f;
                 //Debug.Log(sphereRigidbody.velocity);
-  
+
             }
             if (!isRanged)
             {
-                
+
                 _animator.SetBool("isInRange", false);
                 _animator.SetTrigger("isAttacked");
                 playerHealth.takeDamage(attackDamage);
             }
-           
+
             isAttacked = true;
             Invoke("AttackCooldown", attackCooldown);
         }
     }
     void Chase()
     {
-        
-        
-        
-            _animator.SetBool("isInRange", true);
-            agent.speed = moveSpeed;
-            agent.SetDestination(player.position);
-        
+
+
+
+        _animator.SetBool("isInRange", true);
+        agent.speed = moveSpeed;
+        agent.SetDestination(player.position);
+
     }
     void AttackCooldown()
     {
@@ -107,4 +108,3 @@ public class Enemy : MonoBehaviour
 
     }
 }
-
