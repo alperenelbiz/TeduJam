@@ -82,7 +82,7 @@ public class CardSystem : MonoBehaviour
         Event5Choice1.text = "BETTER WEAPON\nBUT\nENEMY DAMAGE WILL INCREASE BY %10"; //+silah seviyesi ama dusmanlarin verdigi hasar +%10
         Event5Choice2.text = "BETTER WEAPON\nBUT\nENEMY ATTACK SPEED WILL INCREASE BY %15"; //+silah seviyesi ama dusman kosma hizi +%15
     }
-    public void ChoiceMenuOn1()
+    public void ChoiceMenuOn1() 
     {
         Time.timeScale = 0f;
         gamePaused = true;
