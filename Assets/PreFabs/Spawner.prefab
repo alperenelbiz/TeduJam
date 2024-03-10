@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 790495221991323106}
   - component: {fileID: 7878269071800440497}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 1205127018860151585, guid: d30219a29a58b154d8346f6a3080b376, type: 3}
+  - {fileID: 4991404794794735638, guid: db133888f64fbf343bbc11e696f1afe2, type: 3}
   - {fileID: 9052837122114527794, guid: 09f6248898bdfd441ba4210b8ea02cbe, type: 3}
   - {fileID: 7430156285191501483, guid: bf4c0fc798428614ea812fd92d4fa9e3, type: 3}
   isNewLvl: 0
