@@ -11,6 +11,11 @@ public class AsyncLoader : MonoBehaviour
 
     [SerializeField] private Slider loadingSlider;
 
+    private void Start()
+    {
+        mainMenu.SetActive(true);
+        loadingScreen.SetActive(false);
+    }
     public void LoadLevelBtn(string levelToLoad)
     {
         mainMenu.SetActive(false);
