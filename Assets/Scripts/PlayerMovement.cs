@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
+    /*
     //Crouch & Slide
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale;
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
     public float jumpForce = 550f;
+    */
 
     //Input
     float x, y;
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        playerScale = transform.localScale;
+        //playerScale = transform.localScale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -79,13 +81,16 @@ public class PlayerMovement : MonoBehaviour
         jumping = Input.GetButton("Jump");
         crouching = Input.GetKey(KeyCode.LeftControl);
 
+        /*
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
+        */
     }
 
+    /*
     private void StartCrouch()
     {
         transform.localScale = crouchScale;
@@ -98,12 +103,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
+    
     private void StopCrouch()
     {
         transform.localScale = playerScale;
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
     }
+    */
 
     private void Movement()
     {
@@ -118,18 +124,19 @@ public class PlayerMovement : MonoBehaviour
         CounterMovement(x, y, mag);
 
         //If holding jump && ready to jump, then jump
-        if (readyToJump && jumping) Jump();
+        //if (readyToJump && jumping) Jump();
 
         //Set max speed
         float maxSpeed = this.maxSpeed;
-
+        
+        /*
         //If sliding down a ramp, add force down so player stays grounded and also builds speed
         if (crouching && grounded && readyToJump)
         {
             rb.AddForce(Vector3.down * Time.deltaTime * 3000);
             return;
         }
-
+        */
         //If speed is larger than maxspeed, cancel out the input so you don't go over max speed
         if (x > 0 && xMag > maxSpeed) x = 0;
         if (x < 0 && xMag < -maxSpeed) x = 0;
@@ -154,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
     }
 
+    /*
     private void Jump()
     {
         if (grounded && readyToJump)
@@ -179,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
+    */
 
     private float desiredX;
     private void Look()
@@ -203,12 +212,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!grounded || jumping) return;
 
+        /*
         //Slow down sliding
         if (crouching)
         {
             rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideCounterMovement);
             return;
         }
+        */
 
         //Counter movement
         if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0))
