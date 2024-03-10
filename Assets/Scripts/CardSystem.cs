@@ -59,28 +59,28 @@ public class CardSystem : MonoBehaviour
     }
     public void Choices1()
     {
-        Event1Choice1.text = "oyuncu -%5 can ama mermi basina hasar +%10";
-        Event1Choice2.text = "dusmanlarin verdigi hasar +%10 ama dusman saldiri hizi +%10";
+        Event1Choice1.text = "YOUR HEALTH WILL LOWER BY %5\nBUT\nYOUR DAMAGE PER BULLET WILL INCREASE BY %10"; //oyuncu -%5 can ama mermi basina hasar +%10
+        Event1Choice2.text = "ENEMY DAMAGE WILL INCREASE BY %10\nBUT\nENEMY ATTACK SPEED WILL DECREASE BY %10"; //dusmanlarin verdigi hasar +%10 ama dusman saldiri hizi -%10
     }
     public void Choices2()
     {
-        Event2Choice1.text = "+silah seviyesi ama dusmanlarin saldiri hizi +%10";
-        Event2Choice2.text = "dusmanlarin verdigi hasar -%10 ama oyuncu kosma hizi -%10";
+        Event2Choice1.text = "BETTER WEAPON\nBUT\nENEMY ATTACK SPEED WILL INCREASE BY %10"; //+silah seviyesi ama dusmanlarin saldiri hizi +%10
+        Event2Choice2.text = "ENEMY DAMAGE WILL DECREASE BY %10\nBUT\nYOUR SPEED WILL DECREASE BY %10"; //dusmanlarin verdigi hasar -%10 ama oyuncu kosma hizi -%10
     }
     public void Choices3()
     {
-        Event3Choice1.text = "+silah seviyesi ama dusman kosma hizi +%10";
-        Event3Choice2.text = "+silah seviyesi ama mermi basina -%10 hasar";
+        Event3Choice1.text = "BETTER WEAPON\nBUT\nENEMY ATTACK SPEED WILL INCREASE BY %10"; //+silah seviyesi ama dusman kosma hizi +%10
+        Event3Choice2.text = "BETTER WEAPON\nBUT\nYOUR DAMAGE PER BULLET WILL DECREASE BY %10"; //+silah seviyesi ama mermi basina -%10 hasar
     }
     public void Choices4()
     {
-        Event4Choice1.text = "dusman kosma hizi -%15 ama oyuncu kosma hizi -%10";
-        Event4Choice2.text = "dusman kosma hizi -%10 ama oyuncunun mermi basina verdigi hasar -%10";
+        Event4Choice1.text = "ENEMY ATTACK SPEED WILL DECREASED BY %15\nBUT\nYOUR SPEED WILL DECREASE BY %10"; //dusman kosma hizi -%15 ama oyuncu kosma hizi -%10
+        Event4Choice2.text = "ENEMY ATTACK SPEED WILL DECREASED BY %10\nBUT\nYOUR DAMAGE PER BULLET WILL DECREASE BY %10"; //dusman kosma hizi -%10 ama oyuncunun mermi basina verdigi hasar -%10
     }
     public void Choices5()
     {
-        Event5Choice1.text = "+silah seviyesi ama dusmanlarin verdigi hasar +%10";
-        Event5Choice2.text = "+silah seviyesi ama dusman kosma hizi +%15";
+        Event5Choice1.text = "BETTER WEAPON\nBUT\nENEMY DAMAGE WILL INCREASE BY %10"; //+silah seviyesi ama dusmanlarin verdigi hasar +%10
+        Event5Choice2.text = "BETTER WEAPON\nBUT\nENEMY ATTACK SPEED WILL INCREASE BY %15"; //+silah seviyesi ama dusman kosma hizi +%15
     }
     public void ChoiceMenuOn1()
     {
@@ -118,7 +118,7 @@ public class CardSystem : MonoBehaviour
         //dusmanlarýn saldiri hasari -%10
         enemyScript.attackDamage += (enemyScript.attackDamage* 10) / 100;
         enemyBulletScript.ammoDamage += (enemyBulletScript.ammoDamage * 10) / 100;
-        enemyScript.moveSpeed += (enemyScript.moveSpeed * 10) / 100;
+        enemyScript.moveSpeed -= (enemyScript.moveSpeed * 10) / 100;
         orbTrig.orbTrigger1 = false;
         versionControl = 6;
         ChoiceMenuOff();

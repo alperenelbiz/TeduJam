@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MoveToScreen : MonoBehaviour
 {
@@ -9,8 +12,6 @@ public class MoveToScreen : MonoBehaviour
     public float delayTime;
     public Camera playerCam;
     public GameObject player;
-
-    
 
     public bool HedefeHareketEt(GameObject go)
     {
@@ -30,7 +31,7 @@ public class MoveToScreen : MonoBehaviour
             player.transform.position = Vector3.MoveTowards(player.transform.position, hedefNesne.position, hareketHizi * Time.deltaTime);
 
             // Eðer nesne hedefe yaklaþtýysa, hareketi durdur
-            if (Vector3.Distance(player.transform.position, hedefNesne.position) < 0.644f)
+            if (Vector3.Distance(player.transform.position, hedefNesne.position) < 0.3f)
             {
                 Debug.Log("Hedefe ulaþýldý!");
                 return true;

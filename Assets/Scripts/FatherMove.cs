@@ -19,7 +19,6 @@ public class FatherMove : MonoBehaviour
     private void Update()
     {
         
-
     }
 
     IEnumerator Movement()
