@@ -38,43 +38,51 @@ public class CardSystem : MonoBehaviour
     EnemyBullet enemyBulletScript;
     Bullet bullet;
     OrbTrigger orbTrig;
+    OrbTrigger2 orbTrig2;
+    OrbTrigger3 orbTrig3;
+    OrbTrigger4 orbTrig4;
+    OrbTrigger5 orbTrig5;
 
     public void Start()
     {
-        gunScript = GameObject.Find("Player / Camera / Main Camera").GetComponent<Gun>();
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        movementScript = GameObject.Find("Player / FirstPersonCharacter").GetComponent<PlayerMovement>();
+        gunScript = GameObject.Find("Player/Camera/Main Camera/Camera").GetComponent<Gun>();
+        playerHealth = GameObject.Find("Player/FirstPersonCharacter").GetComponent<PlayerHealth>();
+        movementScript = GameObject.Find("Player/FirstPersonCharacter").GetComponent<PlayerMovement>();
         enemyScript = GameObject.Find("Eye").GetComponent<Enemy>();
         enemyBulletScript = GameObject.Find("Fireball").GetComponent<EnemyBullet>();
         bullet = GameObject.Find("Bullet").GetComponent<Bullet>();
-        orbTrig = GameObject.Find("Orb1").GetComponent<OrbTrigger>();
+        orbTrig = GameObject.Find("Orb1/OrbTrigger").GetComponent<OrbTrigger>();
+        orbTrig2 = GameObject.Find("Orb2/OrbTrigger").GetComponent<OrbTrigger2>();
+        orbTrig3 = GameObject.Find("Orb3/OrbTrigger").GetComponent<OrbTrigger3>();
+        orbTrig4 = GameObject.Find("Orb4/OrbTrigger").GetComponent<OrbTrigger4>();
+        orbTrig5 = GameObject.Find("Orb5/OrbTrigger").GetComponent<OrbTrigger5>();
     }
     public void Choices1()
     {
-        Event1Choice1.text = "oyuncu -%5 can ama mermi basina hasar +%10";
-        Event1Choice2.text = "dusmanlarin verdigi hasar +%10 ama dusman saldiri hizi +%10";
+        Event1Choice1.text = "YOUR HEALTH WILL LOWER BY %5\nBUT\nYOUR DAMAGE PER BULLET WILL INCREASE BY %10"; //oyuncu -%5 can ama mermi basina hasar +%10
+        Event1Choice2.text = "ENEMY DAMAGE WILL INCREASE BY %10\nBUT\nENEMY ATTACK SPEED WILL DECREASE BY %10"; //dusmanlarin verdigi hasar +%10 ama dusman saldiri hizi -%10
     }
     public void Choices2()
     {
-        Event2Choice1.text = "+silah seviyesi ama dusmanlarin saldiri hizi +%10";
-        Event2Choice2.text = "dusmanlarin verdigi hasar -%10 ama oyuncu kosma hizi -%10";
+        Event2Choice1.text = "BETTER WEAPON\nBUT\nENEMY ATTACK SPEED WILL INCREASE BY %10"; //+silah seviyesi ama dusmanlarin saldiri hizi +%10
+        Event2Choice2.text = "ENEMY DAMAGE WILL DECREASE BY %10\nBUT\nYOUR SPEED WILL DECREASE BY %10"; //dusmanlarin verdigi hasar -%10 ama oyuncu kosma hizi -%10
     }
     public void Choices3()
     {
-        Event3Choice1.text = "+silah seviyesi ama dusman kosma hizi +%10";
-        Event3Choice2.text = "+silah seviyesi ama mermi basina -%10 hasar";
+        Event3Choice1.text = "BETTER WEAPON\nBUT\nENEMY ATTACK SPEED WILL INCREASE BY %10"; //+silah seviyesi ama dusman kosma hizi +%10
+        Event3Choice2.text = "BETTER WEAPON\nBUT\nYOUR DAMAGE PER BULLET WILL DECREASE BY %10"; //+silah seviyesi ama mermi basina -%10 hasar
     }
     public void Choices4()
     {
-        Event4Choice1.text = "dusman kosma hizi -%15 ama oyuncu kosma hizi -%10";
-        Event4Choice2.text = "dusman kosma hizi -%10 ama oyuncunun mermi basina verdigi hasar -%10";
+        Event4Choice1.text = "ENEMY ATTACK SPEED WILL DECREASED BY %15\nBUT\nYOUR SPEED WILL DECREASE BY %10"; //dusman kosma hizi -%15 ama oyuncu kosma hizi -%10
+        Event4Choice2.text = "ENEMY ATTACK SPEED WILL DECREASED BY %10\nBUT\nYOUR DAMAGE PER BULLET WILL DECREASE BY %10"; //dusman kosma hizi -%10 ama oyuncunun mermi basina verdigi hasar -%10
     }
     public void Choices5()
     {
-        Event5Choice1.text = "+silah seviyesi ama dusmanlarin verdigi hasar +%10";
-        Event5Choice2.text = "+silah seviyesi ama dusman kosma hizi +%15";
+        Event5Choice1.text = "BETTER WEAPON\nBUT\nENEMY DAMAGE WILL INCREASE BY %10"; //+silah seviyesi ama dusmanlarin verdigi hasar +%10
+        Event5Choice2.text = "BETTER WEAPON\nBUT\nENEMY ATTACK SPEED WILL INCREASE BY %15"; //+silah seviyesi ama dusman kosma hizi +%15
     }
-    public void ChoiceMenuOn1()
+    public void ChoiceMenuOn1() 
     {
         Time.timeScale = 0f;
         gamePaused = true;
@@ -101,21 +109,27 @@ public class CardSystem : MonoBehaviour
         //+%10 damage per bullet
         bullet.ammoDamage += (bullet.ammoDamage * 10) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig.orb1);
     }
     public void Menu1Button2()
     {
         //dusmanlarýn saldiri hasari -%10
         enemyScript.attackDamage += (enemyScript.attackDamage* 10) / 100;
         enemyBulletScript.ammoDamage += (enemyBulletScript.ammoDamage * 10) / 100;
-        enemyScript.moveSpeed += (enemyScript.moveSpeed * 10) / 100;
+        enemyScript.moveSpeed -= (enemyScript.moveSpeed * 10) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig.orb1);
     }
     public void ChoiceMenuOn2()
     {
         Time.timeScale = 0f;
         gamePaused = true;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         pauseMenu.SetActive(true);
         crosshair.SetActive(false);
         menu1button1.SetActive(false);
@@ -135,6 +149,9 @@ public class CardSystem : MonoBehaviour
         enemyScript.moveSpeed += (enemyScript.moveSpeed * 10) / 100;
         gunScript.currentLevel += 1;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig2.orb2);
     }
     public void Menu2Button2()
     {
@@ -142,13 +159,16 @@ public class CardSystem : MonoBehaviour
         enemyBulletScript.ammoDamage -= (enemyBulletScript.ammoDamage * 10) / 100;
         movementScript.moveSpeed -= (movementScript.moveSpeed * 10) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig2.orb2);
     }
     public void ChoiceMenuOn3()
     {
         Time.timeScale = 0f;
         gamePaused = true;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         pauseMenu.SetActive(true);
         crosshair.SetActive(false);
         menu1button1.SetActive(false);
@@ -169,6 +189,9 @@ public class CardSystem : MonoBehaviour
         //dusman kosma hizi +%10
         enemyScript.moveSpeed += (enemyScript.moveSpeed * 10) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig3.orb3);
     }
     public void Menu3Button2()
     {
@@ -177,13 +200,16 @@ public class CardSystem : MonoBehaviour
         //mermi basina +%10 hasar
         bullet.ammoDamage -= (bullet.ammoDamage * 10) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig3.orb3);
     }
     public void ChoiceMenuOn4()
     {
         Time.timeScale = 0f;
         gamePaused = true;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         pauseMenu.SetActive(true);
         crosshair.SetActive(false);
         menu1button1.SetActive(false);
@@ -204,6 +230,9 @@ public class CardSystem : MonoBehaviour
         //oyuncu kosma hizi -%10
         movementScript.moveSpeed-= (movementScript.moveSpeed * 10)/100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig4.orb4);
     }
     public void Menu4Button2()
     {
@@ -212,13 +241,16 @@ public class CardSystem : MonoBehaviour
         //mermi basina -%10 hasar
         bullet.ammoDamage -= (bullet.ammoDamage * 10) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig4.orb4);
     }
     public void ChoiceMenuOn5()
     {
         Time.timeScale = 0f;
         gamePaused = true;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         pauseMenu.SetActive(true);
         crosshair.SetActive(false);
         menu1button1.SetActive(false);
@@ -239,12 +271,18 @@ public class CardSystem : MonoBehaviour
         enemyScript.attackDamage += (enemyScript.attackDamage * 10) / 100;
         enemyBulletScript.ammoDamage += (enemyBulletScript.ammoDamage * 10) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig5.orb5);
     }
     public void Menu5Button2()
     {
         gunScript.currentLevel += 1;
         enemyScript.moveSpeed += (enemyScript.moveSpeed * 15) / 100;
         orbTrig.orbTrigger1 = false;
+        versionControl = 6;
+        ChoiceMenuOff();
+        Destroy(orbTrig5.orb5);
     }
     public void ChoiceMenuOff()
     {

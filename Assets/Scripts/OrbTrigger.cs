@@ -6,6 +6,8 @@ public class OrbTrigger : MonoBehaviour
 {
     [SerializeField] public bool orbTrigger1 = false;
     CardSystem cardScript;
+    public GameObject orb1;
+
     public void Start()
     {
         cardScript = GameObject.Find("UIController").GetComponent<CardSystem>();
