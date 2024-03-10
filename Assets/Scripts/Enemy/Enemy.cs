@@ -20,8 +20,6 @@ public class Enemy : MonoBehaviour
     public bool isRunner;
     PlayerHealth playerHealth;
 
-    private AudioSource audio;
-
 
     private bool isAttacked;
     Animator _animator;
@@ -33,17 +31,14 @@ public class Enemy : MonoBehaviour
         _animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         realPlayer= GameObject.Find("FirstPersonCharacter");
-        audio = GetComponent<AudioSource>();
+        
     }
-    private void Start()
-    {
-        /* soldier = GameObject.Find("Soldier_demo");
-         playerHealth = soldier.GetComponent<CharacterHealth>();*/
-    }
+   
 
 
     void Update()
     {
+        
         inRange = Physics.CheckSphere(transform.position, attackRange, player0);
         if (inRange)
         {
@@ -88,7 +83,6 @@ public class Enemy : MonoBehaviour
                 
                 _animator.SetBool("isInRange", false);
                 _animator.SetTrigger("isAttacked");
-                audio.PlayOneShot(audio.clip);
                 playerHealth.takeDamage(attackDamage);
             }
            
@@ -98,6 +92,9 @@ public class Enemy : MonoBehaviour
     }
     void Chase()
     {
+        
+        
+        
             _animator.SetBool("isInRange", true);
             agent.speed = moveSpeed;
             agent.SetDestination(player.position);

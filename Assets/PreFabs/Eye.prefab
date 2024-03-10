@@ -11,11 +11,9 @@ GameObject:
   - component: {fileID: 8050799934330187178}
   - component: {fileID: 2039017352789472070}
   - component: {fileID: 4919813390488619846}
-  - component: {fileID: 487198000784949168}
-  - component: {fileID: 8597930338883457618}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Eye
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,44 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &487198000784949168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7113782612213725363}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8baf03b567f74e45800193eb7141353, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 50
-  dedcount: 0
---- !u!136 &8597930338883457618
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7113782612213725363}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.9999995
-  m_Height: 1.9999998
-  m_Direction: 1
-  m_Center: {x: -0.00000032782555, y: 0.00000023841858, z: -0.0000003576278}
 --- !u!1 &7430156285191501483
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,10 +98,9 @@ GameObject:
   - component: {fileID: 733864334991287441}
   - component: {fileID: 2632597427056386596}
   - component: {fileID: -6754611743737570961}
-  - component: {fileID: 6578766708133551621}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Eye
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,7 +146,7 @@ MonoBehaviour:
   attackRange: 15
   inRange: 0
   moveSpeed: 2
-  attackDamage: 0
+  attackDamage: 10
   projectilePrefab: {fileID: 6299526047430511951, guid: 8692fac1ac316dd4699d6501c64b5af8, type: 3}
   firePoint: {fileID: 4646358103380839108}
   isRanged: 1
@@ -228,7 +187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 50
-  dedcount: 0
 --- !u!95 &-6754611743737570961
 Animator:
   serializedVersion: 5
@@ -250,29 +208,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &6578766708133551621
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7430156285191501483}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.1205055
-  m_Height: 2.2718797
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.4756436, z: 0.05613911}
 --- !u!1 &7992403098071731424
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4646358103380839108}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

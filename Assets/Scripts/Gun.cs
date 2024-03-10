@@ -34,15 +34,12 @@ public class Gun : MonoBehaviour
     public ParticleSystem gun3muzzleFlash2;
     public ParticleSystem gun3muzzleFlash3;
 
-    private AudioSource audio;
-
     public int currentLevel;
     
 
     void Start()
     { 
         currentAmmo = maxAmmo;
-        audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -92,7 +89,6 @@ public class Gun : MonoBehaviour
                             Quaternion spreadRotation = Quaternion.Euler(Random.Range(-spreadAngle, spreadAngle), Random.Range(-spreadAngle, spreadAngle), 0f);
                             var bullet1 = Instantiate(bulletPrefab, bulletSpawnPoints_level1[i].position, bulletSpawnPoints_level1[i].rotation * spreadRotation);
                             bullet1.GetComponent<Rigidbody>().velocity = bullet1.transform.forward * bulletSpeed;
-                        audio.PlayOneShot(audio.clip);
                             StartCoroutine(FireDelay(10f/fireRate));
                             
 
