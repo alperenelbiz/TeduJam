@@ -31,16 +31,14 @@ public class Enemy : MonoBehaviour
         _animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         realPlayer= GameObject.Find("FirstPersonCharacter");
+        
     }
-    private void Start()
-    {
-        /* soldier = GameObject.Find("Soldier_demo");
-         playerHealth = soldier.GetComponent<CharacterHealth>();*/
-    }
+   
 
 
     void Update()
     {
+        
         inRange = Physics.CheckSphere(transform.position, attackRange, player0);
         if (inRange)
         {

@@ -14,9 +14,12 @@ public class Spawner : MonoBehaviour
     private float nextSpawnTime;
     private int keep;
     private int spawned;
+    public GameObject player;
+    
 
     void Start()
     {
+       
         isNewLvl = false;
         cantSpawn = false;
         for (int i = 0; i < enemyPrefabs.Length; i++)
