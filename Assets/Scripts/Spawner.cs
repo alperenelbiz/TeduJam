@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     public int spawnCooldown;
     private float nextSpawnTime;
     private int spawned;
+    
 
     void Start()
     {
