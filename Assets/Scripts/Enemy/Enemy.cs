@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
 {
@@ -22,22 +23,23 @@ public class Enemy : MonoBehaviour
 
     private bool isAttacked;
     Animator _animator;
+
+    GameObject realPlayer;
     private void Awake()
     {
+        player = GameObject.Find("Player/FirstPersonCharacter").GetComponent<Transform>();
         playerHealth = player.GetComponent<PlayerHealth>();
-        //_animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        realPlayer = GameObject.Find("FirstPersonCharacter");
 
     }
-    private void Start()
-    {
-        /* soldier = GameObject.Find("Soldier_demo");
-         playerHealth = soldier.GetComponent<CharacterHealth>();*/
-    }
+
 
 
     void Update()
     {
+
         inRange = Physics.CheckSphere(transform.position, attackRange, player0);
         if (inRange)
         {
@@ -50,7 +52,11 @@ public class Enemy : MonoBehaviour
     }
     void Attack()
     {
-        transform.LookAt(player);
+        Vector3 targetDirection = player.position - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5);
+
+        //transform.LookAt(player);
         agent.SetDestination(transform.position);
 
         if (!isAttacked)
@@ -58,6 +64,7 @@ public class Enemy : MonoBehaviour
 
             if (isRanged)
             {
+
 
                 //Vector3 _rotation = new Vector3(firePoint.rotation.x, firePoint.rotation.y, firePoint.rotation.z - 90);
                 GameObject arrow = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -68,13 +75,15 @@ public class Enemy : MonoBehaviour
 
 
                 Rigidbody arrowRigidbody = arrow.GetComponent<Rigidbody>();
-                arrowRigidbody.velocity = direction * 20f;
+                arrowRigidbody.velocity = direction * 40f;
                 //Debug.Log(sphereRigidbody.velocity);
-                //_animator.SetBool("Attack", true);
+
             }
             if (!isRanged)
             {
-                //_animator.SetBool("Attack", true);
+
+                _animator.SetBool("isInRange", false);
+                _animator.SetTrigger("isAttacked");
                 playerHealth.takeDamage(attackDamage);
             }
 
@@ -84,16 +93,13 @@ public class Enemy : MonoBehaviour
     }
     void Chase()
     {
-        if (isRunner == true)
-        {
-            Vector3 v3MeTowardsTarget = player.position - transform.position;
-            agent.velocity += v3MeTowardsTarget.normalized * moveSpeed * Time.deltaTime;
-        }
-        else
-        {
-            agent.speed = moveSpeed;
-            agent.SetDestination(player.position);
-        }
+
+
+
+        _animator.SetBool("isInRange", true);
+        agent.speed = moveSpeed;
+        agent.SetDestination(player.position);
+
     }
     void AttackCooldown()
     {
@@ -102,4 +108,3 @@ public class Enemy : MonoBehaviour
 
     }
 }
-
